@@ -167,33 +167,18 @@ const FashAnimated = () => {
     <div className="relative w-full bg-black overflow-hidden">
       <AnimatedBackground />
 
-      {/* Header */}
-      <motion.header
-        className="relative z-10 pt-12 pb-8 px-6 text-center"
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <motion.h1
-          className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tighter"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-        >
-          FASH
-        </motion.h1>
-      </motion.header>
 
       {/* Categories */}
-      <main className="relative z-10 px-6 pb-20">
-        <div className="max-w-7xl mx-auto">
-          {data.map((category, index) => (
+      <main className="relative z-10 px-6 pb-20 pt-12">
+        <div className="w-full flex justify-center">
+          <div className="w-full max-w-6xl">
+          {data.map((category) => (
             <CategorySection
               key={category.title}
               category={category}
-              index={index}
             />
           ))}
+          </div>
         </div>
       </main>
 

@@ -37,7 +37,7 @@ const FashCard = ({ item, isHovered }) => {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-2 sm:gap-2.5 md:gap-3 w-full">
+        <div className="relative z-10 flex flex-col items-center justify-center text-center gap-2 sm:gap-2.5 md:gap-3 w-full h-full">
           {/* Logo */}
           <motion.div
             className="w-8 h-8 sm:w-9 sm:h-9 md:w-11 md:h-11 lg:w-12 lg:h-12 p-1 sm:p-1.5 md:p-2 bg-white/5 rounded-md sm:rounded-md md:rounded-lg flex items-center justify-center relative"
