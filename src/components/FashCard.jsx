@@ -20,7 +20,7 @@ const FashCard = ({ item, isHovered }) => {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
-      <div className="relative glass rounded-lg overflow-hidden p-2 sm:p-3 md:p-4 lg:p-4 flex flex-col items-center justify-center min-h-[130px] sm:min-h-[140px] md:min-h-[150px] lg:min-h-[160px] transition-all duration-300 group-hover:bg-white/20">
+      <div className="relative glass rounded-lg overflow-hidden p-2 sm:p-3 md:p-4 flex flex-col items-center justify-center min-h-[100px] sm:min-h-[120px] md:min-h-[140px] lg:min-h-[160px] transition-all duration-300 group-hover:bg-white/20">
         {/* Animated border on hover */}
         <div className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
           <motion.div

@@ -168,7 +168,7 @@ const FashAnimated = () => {
       <AnimatedBackground />
 
       {/* Categories */}
-      <main className="relative z-10 px-6 pt-12 flex-1">
+      <main className="relative z-10 px-3 sm:px-6 pt-8 sm:pt-12 flex-1">
         <div className="w-full flex justify-center">
           <div className="w-full max-w-6xl">
           {data.map((category) => (
