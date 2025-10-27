@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Volumes/kkmacssd/kkgithub/**)",
+      "Bash(npm create:*)",
+      "Bash(npm init:*)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Read(//var/folders/mv/w3kw6wc92p509tj6ybvddl6h0000gn/T/TemporaryItems/NSIRD_screencaptureui_PYzt2G/**)",
+      "Read(//var/folders/mv/w3kw6wc92p509tj6ybvddl6h0000gn/T/TemporaryItems/NSIRD_screencaptureui_Wx9vRV/**)",
+      "Read(//var/folders/mv/w3kw6wc92p509tj6ybvddl6h0000gn/T/TemporaryItems/NSIRD_screencaptureui_aJ0Fea/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
