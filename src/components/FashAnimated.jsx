@@ -164,12 +164,11 @@ const FashAnimated = () => {
   ]
 
   return (
-    <div className="relative w-full bg-black overflow-hidden">
+    <div className="relative w-full bg-black overflow-hidden flex flex-col min-h-screen">
       <AnimatedBackground />
 
-
       {/* Categories */}
-      <main className="relative z-10 px-6 pb-20 pt-12">
+      <main className="relative z-10 px-6 pt-12 flex-1">
         <div className="w-full flex justify-center">
           <div className="w-full max-w-6xl">
           {data.map((category) => (
@@ -182,15 +181,10 @@ const FashAnimated = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <motion.footer
-        className="relative z-10 py-8 text-center text-gray-500 border-t border-gray-800"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1 }}
-      >
+      {/* Fixed Footer */}
+      <footer className="relative z-10 py-8 text-center text-gray-500 border-t border-gray-800 bg-black/80 backdrop-blur-sm mt-auto sticky bottom-0">
         <p className="text-sm">designed by kk</p>
-      </motion.footer>
+      </footer>
     </div>
   )
 }
