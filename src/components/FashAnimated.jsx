@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React from 'react'
+import { motion } from 'framer-motion'
 import { Package, Diamond, Watch, Shirt, Sparkles } from 'lucide-react'
 import CategorySection from './CategorySection'
 import AnimatedBackground from './AnimatedBackground'
@@ -31,10 +31,8 @@ const FashAnimated = () => {
         { name: "Luxclusif", url: "luxclusif.com" },
         { name: "1stDibs", url: "1stdibs.com" },
         { name: "Luxury Garage Sale", url: "luxurygaragesale.com" },
-        { name: "Shengli Road Market", url: "shengliroadmarket.com" },
         { name: "StockX", url: "stockx.com" },
-        { name: "Farfetch", url: "farfetch.com" },
-        { name: "Sutore", url: "sutore.com" }
+        { name: "Farfetch", url: "farfetch.com" }
       ]
     },
     {
@@ -164,26 +162,31 @@ const FashAnimated = () => {
   ]
 
   return (
-    <div className="relative w-full bg-black overflow-hidden flex flex-col min-h-screen">
+    <div className="relative w-full min-h-[100dvh] flex flex-col items-center">
       <AnimatedBackground />
 
-      {/* Categories */}
-      <main className="relative z-10 px-3 sm:px-6 pt-8 sm:pt-12 flex-1">
-        <div className="w-full flex justify-center">
-          <div className="w-full max-w-6xl">
-          {data.map((category) => (
+      <main className="relative z-10 w-full max-w-4xl px-6 sm:px-10 pt-10 sm:pt-14 pb-12 my-auto">
+        {data.map((category, index) => (
+          <motion.div
+            key={category.title}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.5,
+              delay: index * 0.05,
+              ease: [0.16, 1, 0.3, 1]
+            }}
+          >
             <CategorySection
-              key={category.title}
               category={category}
+              defaultOpen={index === 0}
             />
-          ))}
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </main>
 
-      {/* Fixed Footer */}
-      <footer className="relative z-10 py-8 text-center text-gray-500 border-t border-gray-800 bg-black/80 backdrop-blur-sm mt-auto sticky bottom-0">
-        <p className="text-sm">designed by kk</p>
+      <footer className="relative z-10 py-6 text-center">
+        <p className="text-[11px] text-white/15 tracking-widest uppercase">kk</p>
       </footer>
     </div>
   )

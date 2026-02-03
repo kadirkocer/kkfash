@@ -1,63 +1,70 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ChevronDown } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronRight } from 'lucide-react'
 import FashCard from './FashCard'
 
-const CategorySection = ({ category }) => {
-  const [isOpen, setIsOpen] = useState(false)
+const CategorySection = ({ category, defaultOpen = false }) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen)
   const [hoveredId, setHoveredId] = useState(null)
 
+  const Icon = category.icon
+
   return (
-    <section className="w-full" style={{paddingTop: '40px', paddingBottom: '40px'}}>
-      {/* Category Title - Clickable Dropdown */}
+    <section className="w-full mb-8 sm:mb-10">
+      {/* Category Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-center group transition-all duration-300 px-4"
-        style={{marginBottom: '20px'}}
+        className="w-full group"
       >
-        <div className="inline-flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight group-hover:text-gray-300 transition-colors">
+        <div className="flex items-center justify-center gap-3 pb-3 mb-1">
+          <Icon className="w-4 h-4 text-white/25" strokeWidth={1.5} />
+          <h2 className="text-sm sm:text-base font-medium tracking-wide text-white/60 group-hover:text-white/90 transition-colors uppercase">
             {category.title}
           </h2>
           <motion.div
-            animate={{ rotate: isOpen ? 180 : 0 }}
-            transition={{ duration: 0.3 }}
+            animate={{ rotate: isOpen ? 90 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="text-white/20 group-hover:text-white/50 transition-colors"
           >
-            <ChevronDown
-              className="w-6 h-6 text-gray-300"
-              strokeWidth={1.5}
-            />
+            <ChevronRight className="w-3.5 h-3.5" />
           </motion.div>
         </div>
       </button>
 
-      {/* Expandable Grid with Animation */}
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
-        className="overflow-hidden"
-      >
-        <div className="flex justify-center px-2 sm:px-4">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 lg:gap-8 w-full" style={{maxWidth: '900px'}}>
-          {category.items.map((item, itemIndex) => (
-            <motion.div
-              key={item.url}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isOpen ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, delay: itemIndex * 0.05 }}
-              onMouseEnter={() => setHoveredId(item.url)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              <FashCard
-                item={item}
-                isHovered={hoveredId === item.url}
-              />
-            </motion.div>
-          ))}
-          </div>
-        </div>
-      </motion.div>
+      {/* Cards Grid */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 py-5">
+              {category.items.map((item, itemIndex) => (
+                <motion.div
+                  key={item.url}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: itemIndex * 0.025,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  onMouseEnter={() => setHoveredId(item.url)}
+                  onMouseLeave={() => setHoveredId(null)}
+                >
+                  <FashCard
+                    item={item}
+                    isHovered={hoveredId === item.url}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
